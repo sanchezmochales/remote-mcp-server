@@ -24,20 +24,13 @@ export class MyMCP extends McpAgent {
 		//Consulta datos git_hub
 		this.server.tool(
 			"consulta",
-			async () =>{
-				const response= await axios.get('https://api.github.com/users/sanchezmochales/repos')
-				return {
-								content: [
-									{
-										type: "text",
-										text: "holaa",
-									},
-								],
-							};
-			}
-			
+			async () => ({
+				content: [{ type: "text", text:"hola" }],
+			})
+		)
+				
 						
-		);
+		;
 
 		// Calculator tool with multiple operations
 		this.server.tool(
