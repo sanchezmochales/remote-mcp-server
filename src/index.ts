@@ -30,7 +30,7 @@ export class MyMCP extends McpAgent {
 								content: [
 									{
 										type: "text",
-										text: response.data,
+										text: "holaa",
 									},
 								],
 							};
