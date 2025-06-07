@@ -2,6 +2,7 @@ import { McpAgent } from "agents/mcp";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import axios from 'axios';
+import { ResourceContentsSchema } from "@modelcontextprotocol/sdk/types.js";
 axios.defaults.baseURL = 'https://api.github.com/users/sanchezmochales/repos';
 
 // Define our MCP agent with tools
@@ -25,7 +26,14 @@ export class MyMCP extends McpAgent {
 			"consulta",
 			async () =>{
 				const response= await axios.get('https://api.github.com/users/sanchezmochales/repos')
-				return response.data
+				return {
+								content: [
+									{
+										type: "text",
+										text: response.data,
+									},
+								],
+							};
 			}
 			
 						
