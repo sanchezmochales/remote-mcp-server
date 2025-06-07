@@ -4,6 +4,7 @@ import { z } from "zod";
 import axios from 'axios';
 import { ResourceContentsSchema } from "@modelcontextprotocol/sdk/types.js";
 axios.defaults.baseURL = 'https://api.github.com/users/sanchezmochales/repos';
+const respuesta= await axios.get('https://api.github.com/users/sanchezmochales/repos')
 
 // Define our MCP agent with tools
 export class MyMCP extends McpAgent {
@@ -24,13 +25,17 @@ export class MyMCP extends McpAgent {
 		//Consulta datos git_hub
 		this.server.tool(
 			"consulta",
-			async () => ({
-				content: [{ type: "text", text:"hola" }],
+			{
+			respuestaa: respuesta
+
+			},
+			async ({respuesta}) =>  ({
+				content: [{type:"text",text:String(respuesta.data)}]
 			})
-		)
-				
+
+			)
+			
 						
-		;
 
 		// Calculator tool with multiple operations
 		this.server.tool(
